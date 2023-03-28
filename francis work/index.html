@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <header>
+            <h1>Home</h1>
+            <nav>
+                <ul> 
+                     <li><a href=""></a>About me</li> 
+                     <li><a href=""></a>My Other Blogs</li>
+                     <li><a href=""></a>Resources</li>
+                     <li><a href=""></a>Author's profile</li>
+                     </ul>
+                  </nav>
+                </header>
+
+    <h1>Crytography</h1>
+    <br>
+    <br>
+    <br>
+    <br>
+   <p>To The Point </p>
+   <br>
+   <br>
+   <p>Posted On Match 13,2020</p>
+   
+<br>
+    <p>Of course! Cryptography is a very technical subject; <strong>it’s difficult to understand the “how”</strong></p>
+
+    <p>But there ubiquitous presence warrants to <strong>understand the “why &amp; when”</strong></p>
+    
+    <p>Surprisingly, these questions aren’t difficult to understand, so let’s run through them quickly.</p>
+    
+    <br>
+    <br>
+
+    <h2>Some terms</h2>
+
+    <br>
+    <br>
+     
+    
+    
+    
+    <h2>Encryption, Signature &amp; Hash</h2>
+
+    <br>
+
+     <h3>Encryption</h3>
+    <div class=""><div class=""><pre class=""><code>Encrypt some data called X:
+    [X] --(public key)--&gt; [Y]
+    
+    Decrypt Y to obtain the data:
+    [Y] --(private key)--&gt; [X]
+    </code></pre></div></div>
+    <br>
+    <br>
+
+    <p>Implying that anyone can encrypt a message/data, but only those systems/apps that  <br>
+         have access to the private key can decrypt it. e.g. if an app wants to receive data securely, <br>
+         it can publish a public key. This public key can be used by another app to encrypt the <br> 
+         data and send to the  former app. The former app can then use the private key to read the data.</p>
+    
+    <p>Under symmetric encryption, i.e. when there is only 1 key (no public private key pair), typically <br>
+         the same system/app is performing the encryption and decryption of the message/data. e.g. encrypting data at rest. <br>
+          It is also used in TLS process.</p>
+    
+    <br>
+    <br>
+    
+    <h3>Signature (aka Digital Signature)</h3>
+    <code>Encrypt some data called X:
+    [X] --(private key)--&gt; [Y]
+    
+    [X,Y] - both are sent from sender to receiver
+    
+    Decrypt Y to obtain the data:
+    [Y] --(public key)--&gt; [X]
+    </code></pre></div></div>
+
+    <br>
+    <br>
+
+    <p>Digital signatures are used to verify that a message was sent by a particular source, and <br>
+         none else. The destination can verify this by comparing X that was sent and X that was <br> 
+         obtained by decrypting Y. If the two are not equal, then either the message was tampered <br>
+         or not sent by the sender we expected it from.</p>
+    <br>
+    <br>
+
+    <h3>Message authentication</h3>
+    <code>Encrypt some data called X:
+    [X] --(key)--&gt; [Y]
+    
+    [X,Y] - both are sent from sender to receiver
+    
+    Decrypt Y to obtain the data:
+    [Y] --(same key)--&gt; [X]
+    </code></pre></div></div>
+    <p>Message authentication works in the same manner as Signing does, except that it uses symmetric keys.</p>
+    
+    
+    <br>
+
+    <h3>Hash</h3>
+    [X] --(hashing &lt;DOESN'T USE A KEY&gt;)--&gt; [Y]
+    
+    [Y] --[NOT POSSIBLE]--&gt; [X]
+    </code></pre></div></div>
+    <p>Implying, that once Y is created it is not possible to obtain X from Y.
+    Typically used to store passwords and perform data integrity checks</p>
+   
+   
+    <br>
+    <br>
+    
+    <h2>Popular algorithms</h2>
+    <br>
+    <br>
+
+    
+        
+    
+<table>
+    <thead>
+      <tr>
+        <th>Cryto type</th>
+        <th>Popular algorithms</th>
+        <th>Typical applications</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Symmetric encryption</td>
+        <td>AES family</td>
+        <td>Encrypting hard drives</td>
+      </tr>
+      <tr>
+        <td>Asymmetric encryption</td>
+        <td>RSA family</td>
+        <td>Sending encrypted data over the network</td>
+      </tr>
+      <tr>
+        <td>Digital Signing</td>
+        <td>RSA family</td>
+        <td>SSL certificates</td>
+      </tr>
+      <tr>
+        <td>Message Authentication</td>
+        <td>HMAC</td>
+        <td>Authentication (see notes)</td>
+      </tr>
+      <tr>
+        <td>Hashing</td>
+        <td>SHA family</td>
+        <td>Storing data</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+
+
+    
+    
+    <h2>notes</h2>
+    <br>
+    <br>
+
+    <p>HMAC is used by AWS to provide programmatic access via AWS APIs. An access_key and <br> 
+        secret_key is provided such that the access_key identifies the user and the secret_key <br>
+         is the private_key. When data is sent to AWS API, the AWS SDK (or CLI) hashes then signs <br>
+     the data using secret_key to produce HMAC. Then sends access_key, HMAC and data. <br>
+     AWS then cross-references the access_key internally to obtain public_key. AWS then decrypts the <br>
+ HMAC using this public_key to get decrypted_hash. It then hashes the data to produce a hash. Finally, <br>
+  AWS verifies the integrity of the message by comparing the decrypted_hash and hash, and authenticates  <br>
+   since public_key was corresponds to the private_key that is with the user.</p>
+    
+          </article>
+    
+</div>
+
+
+
+
+    </body>
+</html>
